@@ -1,0 +1,112 @@
+﻿<Window x:Class="SupportUtilities.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SupportUtilities"
+        mc:Ignorable="d"
+        Title="Starlight Utilities" Height="450" Width="800" ResizeMode="CanMinimize" Closed="OnWindowClose">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="217*"/>
+            <ColumnDefinition Width="267*"/>
+            <ColumnDefinition Width="267*"/>
+        </Grid.ColumnDefinitions>
+        <!-- #region SYSTEM -->
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,266,0">
+            <Label HorizontalContentAlignment="Center">SYSTEM</Label>
+            <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="PowershellButtonClick" >TERMINAL</Button>
+            <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="QuickassistButtonClick" >REMOTE HELP (QUICKASSIST)</Button>
+            <Label FontSize="10" HorizontalContentAlignment="Center">SETTINGS</Label>
+            <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="ControlpanelButtonClick" >CONTROL PANEL</Button>
+            <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="AdvancedsystemsettingsButtonClick" >ADVANCED SYSTEM SETTINGS</Button>
+            <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="RegeditButtonClick" ToolTip="Directly modifies environment variables. Proceed with extreme caution!" >REGISTRY EDITOR</Button>
+            <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="ServiceButtonClick" >SERVICES</Button>
+            <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="DevicemanagerButtonCLick" >DEVICE MANAGER</Button>
+
+            <Label FontSize="10" HorizontalContentAlignment="Center">MONITORING</Label>
+            <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="TaskmanagerButtonClick" >TASK MANAGER</Button>
+            <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="PerfmonButtonClick" >PERFORMANCE MONITOR</Button>
+            <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="ResmonButtonClick" >RESOURCE MONITOR</Button>
+
+            <Label FontSize="10" HorizontalContentAlignment="Center">CRASH DEBUGGING</Label>
+            <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="EventviewerButtonClick" >EVENT VIEWER</Button>
+
+            <Label FontSize="10" HorizontalContentAlignment="Center">DIRECTORIES</Label>
+            <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="AppdataButtonClick" >APPDATA</Button>
+            <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="TempButtonClick" >TEMP</Button>
+        </StackPanel>
+        <!--#endregion-->
+        <!--#region THIRDPARTY-->
+        <StackPanel Grid.Column="2">
+            <Label HorizontalContentAlignment="Center">THIRDPARTY</Label>
+            <StackPanel Background="WhiteSmoke">
+                <Label FontSize="10" HorizontalContentAlignment="Center" Height="23">PYTHON</Label>
+                <Button Margin="0 0 0 2.55" Style="{StaticResource ButtonStyle}" Click="PythonScriptLoadButtonClick" >LOAD PYTHON SCRIPT</Button>
+                <TextBlock x:Name="PythonScriptNameTextBlock" Margin="3" TextAlignment="Center">SCRIPT NAME</TextBlock>
+                <Button x:Name="ScriptRunnerButton" Margin="0 1" Style="{StaticResource ButtonStyle}" Click="ScriptRunnerButtonClick" >RUN PYTHON SCRIPT</Button>
+                <TextBox x:Name="PipTextBox" Cursor="IBeam" KeyDown="PipTextboxKeyDown"/>
+            </StackPanel>
+            <TextBlock TextAlignment="Center">MISCELLANEOUS</TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Background="WhiteSmoke">
+                    <TextBlock HorizontalAlignment="Center" TextAlignment="Center">Optifine Installer</TextBlock>
+                    <RadioButton Checked="Optifine1_8_9">Minecraft 1.8.9</RadioButton>
+                    <RadioButton Checked="Optifine_1_12_2">Minecraft 1.12.2</RadioButton>
+                    <RadioButton Checked="OptifineLatest">Latest Minecraft</RadioButton>
+                    <Button Margin="0 5 0 0" Style="{StaticResource ButtonStyle}" Click="OptfineInstallButtonClick">Install</Button>
+                </StackPanel>
+                <StackPanel Margin="2 0 0 0" Background="WhiteSmoke" Grid.Column="1">
+                    <TextBlock HorizontalAlignment="Center" TextAlignment="Center">VST Plugin Installer</TextBlock>
+                    <Button x:Name="VSTOpenZipButton" Style="{StaticResource ButtonStyle}" Click="VSTOpenZip">Open Zip</Button>
+                    <RadioButton>Steinberg</RadioButton>
+                    <RadioButton>Program Files</RadioButton>
+                    <Button Style="{StaticResource ButtonStyle}" Click="VSTInstallPlugin">Install</Button>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <!--#endregion-->
+        <!-- #region MISC-->
+        <Grid Grid.Column="2" Grid.ColumnSpan="2" Margin="266,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="92*"/>
+                <RowDefinition Height="125*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!-- OPTIONS -->
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,133,0">
+                <Label HorizontalContentAlignment="Center">OPTIONS</Label>
+                <Button x:Name="DEBUG_RawSettingsButton" Margin="0" Style="{StaticResource ButtonStyle}" Click="ShowRawSettings" Content="SETTINGS"/>
+                <CheckBox x:Name="LogCheckBox" Margin="0 5 0 0" Content="Enable Logging" Checked="EnableDebugMode" Unchecked="DisableDebugMode" ToolTip="Do you want the program to record the executed commands? This might be useful for retracing your steps when debugging or understanding the techniques used?" Initialized="EnableLogButtonInit"/>
+                <CheckBox Content="Thirdparty Scripts" Checked="EnableThirdpartyScripts" Unchecked="DisableThirdpartyScripts" IsChecked="False"  ToolTip="Enable the execution of thirdparty Python scripts?"/>
+            </StackPanel>
+            <!-- HELP-->
+            <StackPanel Grid.Column="1">
+                <Label HorizontalContentAlignment="Center">HELP</Label>
+                <Button x:Name="DiscordCreatorButton" Style="{StaticResource ButtonStyle}" Click="DiscordButtonClick" ToolTip="Discord" Content="Support: Stardust#4085"/>
+            </StackPanel>
+            <!-- INFORMATION -->
+            <StackPanel VerticalAlignment="Bottom" Grid.ColumnSpan="2" Height="414" Grid.RowSpan="2">
+                <Label VerticalAlignment="Bottom" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Margin="0,194,0,0" Grid.RowSpan="2">INFORMATION</Label>
+                <Button x:Name="JavaInfoButton" Click="JavaButtonClick" BorderBrush="{x:Null}" Height="20" VerticalAlignment="Bottom" Background="#FFD8D8D8" Foreground="#FF1F1F1F" FontWeight="Regular"  Initialized="JavaButtonInit" BorderThickness="0,0,0,0" Focusable="False" ToolTip="Launch Git">JAVA</Button>
+                <Button x:Name="GitInfoButton" Click="GitInfoButtonClick" BorderBrush="{x:Null}" Height="20" VerticalAlignment="Bottom" Background="#FFD8D8D8" Foreground="#FF1F1F1F" FontWeight="Regular"  Initialized="GitInfoButtonInit" BorderThickness="0,0,0,0" Focusable="False" ToolTip="Launch Git">GIT</Button>
+                <Button x:Name="NodeJSInfoButton" Click="NodeInfoButtonClick" BorderBrush="{x:Null}" Height="20" VerticalAlignment="Bottom" Background="#FFD8D8D8" Foreground="#FF1F1F1F" FontWeight="Regular"  Initialized="NodeInfoButtonInit" BorderThickness="0,0,0,0" Focusable="False" ToolTip="Launch the Node.JS interactive JavaScript shell">NODE.JS</Button>
+                <Button x:Name="PyInfoButton" Click="PyInfoButtonClick" BorderBrush="{x:Null}" Height="20" VerticalAlignment="Bottom" Background="#FFD8D8D8" Foreground="#FF1F1F1F" FontWeight="Regular"  Initialized="PyInfoButtonInit" BorderThickness="0,0,0,0" Focusable="False" ToolTip="Launch the Python3 interactive shell">PYTHON</Button>
+                <TextBlock x:Name="DEBUG" Height="30" TextAlignment="Center" Background="#FFBEE6FD" Foreground="#393e41" FontWeight="Medium" MouseDown="ShowLog">DEBUG MESSAGE</TextBlock>
+                <TextBlock x:Name="GenericInfoPanel" Height="20" HorizontalAlignment="Center" Initialized="GenericInfoPanelInit">GENERIC INFO</TextBlock>
+                <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="MSInfoButtonClick" >ADVANCED SYSTEM INFORMATION</Button>
+                <Button Margin="0 1" Style="{StaticResource ButtonStyle}" Click="HWINFO64ButtonClick" >HARDWARE INFO</Button>
+                <Button x:Name="OSInfoPanel" Click="LaunchSysInfo" BorderBrush="{x:Null}" Height="20" VerticalAlignment="Bottom" Background="Blue" Foreground="White" FontWeight="Medium"  Initialized="OSInfoPanelInit" BorderThickness="0,0,0,0" Focusable="False" ToolTip="Runs the 'winver' command">WINDOWS 11</Button>
+            </StackPanel>
+            <!--#endregion-->
+        </Grid>
+    </Grid>
+</Window>

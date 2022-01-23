@@ -1,0 +1,7 @@
+﻿App.EnableLogging:1
+App.Python.EnableThirdpartyScripts:0
+App.Python.InstallPath:%pythonpath%
+App.Java.IsInstalled:0
+App.Java.InstallPath:%javapath%
+Node.IsInstalled:0
+Node.Path=C:\Program Files\nodejs\node.exe
